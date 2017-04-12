@@ -24,11 +24,12 @@ public class Main {
     private static void initialization() {
         Random rand = new Random();
         try {
+            String random = Instant.now().toString() + rand.nextInt(1000000000);
             DatagramSocket socket = new DatagramSocket(Constants.portNumber);
             Utils.broadcast(
                     Utils.createNetworkPacket(
                             true, gradient, deviceId,
-                            Instant.now().toString(), rand.nextInt(1000000000)),
+                            Instant.now().toString(), random),
                     socket);
         } catch(Exception E) {
             System.out.println("Socket exception error: " + E);

@@ -19,7 +19,7 @@ public class Utils {
 
         byte[] buf = networkObject.toString().getBytes();
         if (networkObject.toString().getBytes().length > Constants.maxMessageLength) {
-            throw new java.lang.Error("Error: Message length exeeds maxMessageLength");
+            throw new java.lang.Error("Error: Message length exceeds maxMessageLength");
         }
 
         try {
@@ -39,7 +39,7 @@ public class Utils {
      * @param messageUid the uniqueId of the message
      * @return obj the JSON network packet
      */
-    public static JSONObject createNetworkPacket(boolean buildingGradient, int gradient, int senderId, String sentTime, int messageUid) {
+    public static JSONObject createNetworkPacket(boolean buildingGradient, int gradient, int senderId, String sentTime, String messageUid) {
 
         JSONObject obj = new JSONObject();
         obj.put("gradientInitialize", buildingGradient);
