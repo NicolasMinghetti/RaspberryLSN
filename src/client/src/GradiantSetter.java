@@ -1,5 +1,7 @@
 import org.json.JSONObject;
 
+import java.time.Instant;
+
 /**
  * Created by mperrier on 12/04/17.
  */
@@ -16,7 +18,9 @@ public class GradiantSetter {
 
         if(packet.getInt("gradient")<cli.getGradient() || cli.getGradient() == -1){
             cli.setGradient(packet.getInt("gradient")+1);
-            JSONObject packetInit = new JSONObject();
+            JSONObject packetInit = Utils.createNetworkPacket(true,
+                    cli.getGradient(), cli.id, Instant.now().toString(), cli.messageId);
+
             packetInit.put("gradient", cli.getGradient());
             packetInit.put("init", true);
             Utils.broadcast(packetInit, cli.getSocket());
