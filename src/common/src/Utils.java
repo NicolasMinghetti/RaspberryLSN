@@ -33,13 +33,14 @@ public class Utils {
     /**
      * This function returns a network packet with the given parameters
      * @param buildingGradient boolean, set to true if initializing gradient
-     * @param senderId the id of the sender (the device that created the message)
+     * @param senderId the id of the sender (the device that sent the last message)
+     * @param creatorId the id of the message creator (the device that created the message)
      * @param gradient the gradient of this sender
      * @param sentTime the time when the message is sent for the first time
      * @param messageUid the uniqueId of the message
      * @return obj the JSON network packet
      */
-    public static JSONObject createNetworkPacket(boolean buildingGradient, int gradient, int senderId, String sentTime, String messageUid) {
+    public static JSONObject createNetworkPacket(boolean buildingGradient, int gradient, int senderId, int creatorId, String sentTime, String messageUid) {
 
         JSONObject obj = new JSONObject();
         obj.put("gradientInitialize", buildingGradient);
