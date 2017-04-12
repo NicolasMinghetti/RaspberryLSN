@@ -23,7 +23,9 @@ public class ClientListener implements Runnable{
             while (true) {
 
                 JSONObject packet = Utils.receive(cli.getSocket());
-                System.out.println("message receive: " + packet);
+                if(packet.getInt("senderId") != cli.id) {
+                    System.out.println("message receive: " + packet);
+                }
                 if(packet.getBoolean("gradientInitialize")){
                     GradiantSetter graSet = new GradiantSetter(packet, cli);
                     graSet.run();

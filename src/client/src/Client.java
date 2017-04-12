@@ -10,7 +10,7 @@ public class Client {
 
     private AtomicInteger gradient = new AtomicInteger(-1);
     DatagramSocket socket;
-    int id = 0;
+    int id = 1;
     int messageId=0;
 
 
