@@ -12,32 +12,43 @@ public class Utils {
 
     /**
      * This function can be used to broadcast a message on the network
-     * @param message the message to send
-     * @param senderId the id of the sender
+     * @param networkObject JSONObject the packet to be sent over the netork
      */
-    public static void broadcast (int message, int senderId) {
+    public static void broadcast (JSONObject networkObject) {
 
-        JSONObject obj = new JSONObject();
+        System.out.println("Sending message: " + networkObject.toString());
 
-        obj.put("senderId", senderId);
-        obj.put("message", message);
-
-        System.out.println("Sending message: " + obj.toString());
-
-        byte[] buf = obj.toString().getBytes();
-        if (obj.toString().getBytes().length > Constants.maxMessageLength) {
+        byte[] buf = networkObject.toString().getBytes();
+        if (networkObject.toString().getBytes().length > Constants.maxMessageLength) {
             throw new java.lang.Error("Error: Message length exeeds maxMessageLength");
         }
 
         try {
             DatagramPacket packet = new DatagramPacket(buf, buf.length, Constants.getNetAddr(), Constants.portNumber);
-
             DatagramSocket socket = new DatagramSocket(Constants.portNumber);
             socket.send(packet);
         } catch (Exception E) {
-            System.out.println("Error on InetAddress or IO exeption : " +E);
+            System.out.println("Error on IO exception: " + E);
         }
+    }
 
+    /**
+     * This function returns a network packet with the given parameters
+     * @param buildingGradient boolean, set to true if initializing gradient
+     * @param senderId the id of the sender (the device that created the message)
+     * @param sentTime the time when the message is sent for the first time
+     * @param messageUid the uniqueId of the message
+     * @return obj the JSON network packet
+     */
+    public static JSONObject createNetworkPacket(boolean buildingGradient, int senderId, String sentTime, int messageUid) {
+
+        JSONObject obj = new JSONObject();
+        obj.put("gradientInitialize", buildingGradient);
+        obj.put("gradient", 0);
+        obj.put("senderId", senderId);
+        obj.put("sentTime", sentTime);
+        obj.put("messageUid", messageUid);
+        return  obj;
     }
 
     public static JSONObject receive(DatagramSocket socket) throws Exception{
