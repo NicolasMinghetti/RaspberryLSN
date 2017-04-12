@@ -46,6 +46,7 @@ public class Utils {
         obj.put("gradientInitialize", buildingGradient);
         obj.put("gradient", gradient);
         obj.put("senderId", senderId);
+        obj.put("creatorId", creatorId);
         obj.put("sentTime", sentTime);
         obj.put("messageUid", messageUid);
         return  obj;
