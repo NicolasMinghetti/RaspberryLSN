@@ -35,7 +35,7 @@ public class Utils {
             DatagramSocket socket = new DatagramSocket(Constants.portNumber);
             socket.send(packet);
         } catch (Exception E) {
-            System.out.println("Error on InetAddress or IO exeption");
+            System.out.println("Error on InetAddress or IO exeption : " +E);
         }
 
     }

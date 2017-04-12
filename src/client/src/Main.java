@@ -10,15 +10,7 @@ public class Main {
 
         System.out.println("Hello Client");
 
-        int port = 4444;
-        InetAddress addr = null;
-        try {
-            addr = InetAddress.getByName("192.168.1.255");
-        }catch (UnknownHostException e){
-            System.out.println("Host unknown " + e);
-        }
-
-        gradiantSetter grad = new gradiantSetter(port,addr);
+        gradiantSetter grad = new gradiantSetter(Constants.portNumber,Constants.getNetAddr());
         grad.run();
 
 
