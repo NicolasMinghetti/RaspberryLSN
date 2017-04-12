@@ -1,6 +1,6 @@
 import java.net.DatagramSocket;
 import java.time.Instant;
-import java.util.Random;
+import java.util.UUID;
 
 /**
  * This is the main class of the server. It represents the sink in the ad-hoc gradient routing network.
@@ -22,14 +22,11 @@ public class Main {
      * This function initializes the gradient network
      */
     private static void initialization() {
-        Random rand = new Random();
         try {
-            String random = Instant.now().toString() + rand.nextInt(1000000000);
             DatagramSocket socket = new DatagramSocket(Constants.portNumber);
             Utils.broadcast(
                     Utils.createNetworkPacket(
-                            true, gradient, deviceId,
-                            Instant.now().toString(), random),
+                            true, gradient, deviceId, Instant.now().toString(), UUID.randomUUID().toString()),
                     socket);
         } catch(Exception E) {
             System.out.println("Socket exception error: " + E);
