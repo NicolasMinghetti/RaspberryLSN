@@ -24,12 +24,12 @@ public class Client {
         }
     }
 
-    public void setGradient(int gradient){
-        this.gradient = new AtomicInteger(gradient);
-    }
-
     public int getGradient(){
         return gradient.get();
+    }
+
+    public void setGradient(int gradient){
+        this.gradient = new AtomicInteger(gradient);
     }
 
     public int getId(){
@@ -41,7 +41,7 @@ public class Client {
     }
 
     public String getUniqueId(){
-        return Integer.toString(id)+"-"+UUID.randomUUID().toString();
+        return Utils.getMessageUid(id);
     }
 
 }

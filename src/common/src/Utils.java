@@ -1,6 +1,7 @@
 import org.json.JSONObject;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.util.UUID;
 
 /**
  * This class contains Utils functions to be used by client and server
@@ -60,5 +61,14 @@ public class Utils {
         String received = new String(packet.getData());
         JSONObject obj = new JSONObject(received);
         return obj;
+    }
+
+    /**
+     * Use this function to get a unique id for a sent message
+     * @param deviceId the id of this device, it is added at the end of the return String
+     * @return String the unique generated
+     */
+    public static String getMessageUid (int deviceId) {
+        return UUID.randomUUID().toString() + "-" + String.valueOf(deviceId);
     }
 }

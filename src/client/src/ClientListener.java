@@ -17,12 +17,8 @@ public class ClientListener implements Runnable{
     }
 
     public void run() {
-
-
         try {
-
             while (true) {
-
                 JSONObject packet = Utils.receive(cli.getSocket());
                 if(packet.getInt("senderId") != cli.getId()) {
                     System.out.println("message receive: " + packet);
@@ -33,15 +29,10 @@ public class ClientListener implements Runnable{
 
                     }
                 }
-
             }
-
         } catch (Exception e) {
-            System.out.println("Erreur :" + e);
+            System.out.println("Error: " + e + e.getStackTrace());
         }
-
-
     }
-
 }
 

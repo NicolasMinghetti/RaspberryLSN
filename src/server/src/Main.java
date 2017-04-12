@@ -27,7 +27,7 @@ public class Main {
             Utils.broadcast(
                     Utils.createNetworkPacket(
                             true, gradient, deviceId, deviceId, Instant.now().toString(),
-                            UUID.randomUUID().toString() + "-" + String.valueOf(deviceId)),
+                            Utils.getMessageUid(deviceId)),
                     socket);
         } catch(Exception E) {
             System.out.println("Socket exception error: " + E);
