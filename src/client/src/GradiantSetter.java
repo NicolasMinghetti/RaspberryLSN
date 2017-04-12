@@ -14,12 +14,12 @@ public class GradiantSetter {
     }
     public void run(){
 
-        if(packet.getInt("gradient")<cli.getGradient()){
+        if(packet.getInt("gradient")<cli.getGradient() || cli.getGradient() == -1){
             cli.setGradient(packet.getInt("gradient")+1);
             JSONObject packetInit = new JSONObject();
             packetInit.put("gradient", cli.getGradient());
             packetInit.put("init", true);
-
+            Utils.broadcast(packetInit);
         }
     }
 }
