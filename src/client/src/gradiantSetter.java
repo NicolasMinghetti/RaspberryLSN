@@ -8,8 +8,8 @@ import java.net.InetAddress;
 public class gradiantSetter implements Runnable{
 
 
-    InetAddress addr;
-    int port;
+    private InetAddress addr;
+    private int port;
 
     gradiantSetter(int port, InetAddress addr){
         this.port = port;
@@ -18,24 +18,24 @@ public class gradiantSetter implements Runnable{
 
     public void run() {
 
-        while (true) {
-            try {
+        try {
                 DatagramSocket socket = new DatagramSocket(port, addr);
                 socket.setBroadcast(true);
-                DatagramPacket packet;
-                byte[] buf = new byte[1000];
-                packet = new DatagramPacket(buf, buf.length);
 
-                socket.receive(packet);
+                while (true) {
 
-                String received = new String(packet.getData());
-                System.out.println("Package received: " + received);
+                    byte[] buf = new byte[1000];
+                    DatagramPacket packet = new DatagramPacket(buf, buf.length);
+                    socket.receive(packet);
 
-                socket.close();
+                    String received = new String(packet.getData());
+                    System.out.println("Package received: " + received);
+                }
 
-            } catch (Exception e) {
+        } catch (Exception e) {
                 System.out.println("Erreur :" + e);
-            }
         }
     }
+
 }
+
