@@ -9,10 +9,6 @@ import java.net.InetAddress;
  */
 public class Utils {
 
-    static int portNumber = 4444;
-    static String networkAddress = "192.168.1.255";
-    static int maxMessageLength = 1000;
-
     /**
      * This function can be used to broadcast a message on the network
      * @param message the message to send
@@ -28,15 +24,15 @@ public class Utils {
         System.out.println("Sending message: " + obj.toString());
 
         byte[] buf = obj.toString().getBytes();
-        if (obj.toString().getBytes().length > maxMessageLength) {
+        if (obj.toString().getBytes().length > Constants.maxMessageLength) {
             throw new java.lang.Error("Error: Message length exeeds maxMessageLength");
         }
 
         try {
-            InetAddress address = InetAddress.getByName(networkAddress);
-            DatagramPacket packet = new DatagramPacket(buf, buf.length, address, portNumber);
+            InetAddress address = InetAddress.getByName(Constants.networkAddress);
+            DatagramPacket packet = new DatagramPacket(buf, buf.length, address, Constants.portNumber);
 
-            DatagramSocket socket = new DatagramSocket(portNumber);
+            DatagramSocket socket = new DatagramSocket(Constants.portNumber);
             socket.send(packet);
         } catch (Exception E) {
             System.out.println("Error on InetAddress or IO exeption");
