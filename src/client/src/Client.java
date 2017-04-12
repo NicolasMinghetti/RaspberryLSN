@@ -1,6 +1,7 @@
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -9,9 +10,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Client {
 
     private AtomicInteger gradient = new AtomicInteger(-1);
-    DatagramSocket socket;
-    int id = 1;
-    int messageId=0;
+    private DatagramSocket socket;
+    private int id = 1;
+    private int messageId;
 
 
     Client(InetAddress addr, int port){
@@ -31,8 +32,16 @@ public class Client {
         return gradient.get();
     }
 
+    public int getId(){
+        return id;
+    }
+
     public DatagramSocket getSocket(){
         return socket;
+    }
+
+    public String getUniqueId(){
+        return Integer.toString(id)+"-"+UUID.randomUUID().toString();
     }
 
 }

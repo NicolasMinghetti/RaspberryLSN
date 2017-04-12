@@ -4,6 +4,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
+
 /**
  * Created by mperrier on 12/04/17.
  */
@@ -23,13 +24,14 @@ public class ClientListener implements Runnable{
             while (true) {
 
                 JSONObject packet = Utils.receive(cli.getSocket());
-                if(packet.getInt("senderId") != cli.id) {
+                if(packet.getInt("senderId") != cli.getId()) {
                     System.out.println("message receive: " + packet);
-                }
-                if(packet.getBoolean("gradientInitialize")){
-                    GradiantSetter graSet = new GradiantSetter(packet, cli);
-                    graSet.run();
 
+                    if (packet.getBoolean("gradientInitialize")) {
+                        GradiantSetter graSet = new GradiantSetter(packet, cli);
+                        graSet.run();
+
+                    }
                 }
 
             }
