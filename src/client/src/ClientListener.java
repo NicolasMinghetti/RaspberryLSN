@@ -29,8 +29,11 @@ public class ClientListener implements Runnable{
 
                     if (packet.getBoolean("gradientInitialize")) {
                         GradiantSetter graSet = new GradiantSetter(packet, cli);
-                        graSet.run();
+                        (new Thread(graSet)).start();
 
+                    }else{
+                        Retransmission retran = new Retransmission(packet, cli);
+                        (new Thread(retran)).start();
                     }
                 }
 
