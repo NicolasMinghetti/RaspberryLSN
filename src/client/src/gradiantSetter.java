@@ -21,24 +21,19 @@ public class gradiantSetter implements Runnable{
     public void run() {
 
         try {
-                DatagramSocket socket = new DatagramSocket(port, addr);
-                socket.setBroadcast(true);
+            DatagramSocket socket = new DatagramSocket(port, addr);
+            socket.setBroadcast(true);
 
-                while (true) {
 
-                    byte[] buf = new byte[1000];
-                    DatagramPacket packet = new DatagramPacket(buf, buf.length);
-                    socket.receive(packet);
-
-                    String received = new String(packet.getData());
-                    JSONObject obj = new JSONObject(received);
-                    System.out.println("Package received: " + obj);
-
-                }
+            while (true) {
+                JSONObject packetGradient = Utils.receive(socket);
+            }
 
         } catch (Exception e) {
-                System.out.println("Erreur :" + e);
+            System.out.println("Erreur :" + e);
         }
+
+
     }
 
 }

@@ -2,6 +2,7 @@ import org.json.JSONObject;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.Socket;
 
 /**
  * This class contains Utils functions to be used by client and server
@@ -29,8 +30,7 @@ public class Utils {
         }
 
         try {
-            InetAddress address = InetAddress.getByName(Constants.networkAddress);
-            DatagramPacket packet = new DatagramPacket(buf, buf.length, address, Constants.portNumber);
+            DatagramPacket packet = new DatagramPacket(buf, buf.length, Constants.getNetAddr(), Constants.portNumber);
 
             DatagramSocket socket = new DatagramSocket(Constants.portNumber);
             socket.send(packet);
@@ -38,5 +38,16 @@ public class Utils {
             System.out.println("Error on InetAddress or IO exeption : " +E);
         }
 
+    }
+
+    public static JSONObject receive(DatagramSocket socket) throws Exception{
+
+        byte[] buf = new byte[Constants.maxMessageLength];
+        DatagramPacket packet = new DatagramPacket(buf, buf.length);
+        socket.receive(packet);
+        String received = new String(packet.getData());
+        JSONObject obj = new JSONObject(received);
+        System.out.println("Package received: " + obj);
+        return obj;
     }
 }
