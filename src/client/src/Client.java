@@ -1,13 +1,14 @@
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by mperrier on 12/04/17.
  */
 public class Client {
 
-    private int gradient = -1;
+    private AtomicInteger gradient = new AtomicInteger(-1);
     DatagramSocket socket;
 
 
@@ -21,11 +22,11 @@ public class Client {
     }
 
     public void setGradient(int gradient){
-        this.gradient = gradient;
+        this.gradient = new AtomicInteger(gradient);
     }
 
     public int getGradient(){
-        return gradient;
+        return gradient.get();
     }
 
     public DatagramSocket getSocket(){

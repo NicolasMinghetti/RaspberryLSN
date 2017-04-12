@@ -26,6 +26,7 @@ public class ClientListener implements Runnable{
                 if(packet.getBoolean("gradientInitialize")){
                     GradiantSetter graSet = new GradiantSetter(packet, cli);
                     graSet.run();
+                    
                 }
 
             }

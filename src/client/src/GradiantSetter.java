@@ -19,7 +19,7 @@ public class GradiantSetter {
             JSONObject packetInit = new JSONObject();
             packetInit.put("gradient", cli.getGradient());
             packetInit.put("init", true);
-            Utils.broadcast(packetInit);
+            Utils.broadcast(packetInit, cli.getSocket());
         }
     }
 }
