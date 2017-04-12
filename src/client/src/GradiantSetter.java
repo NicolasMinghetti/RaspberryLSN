@@ -5,7 +5,7 @@ import java.time.Instant;
 /**
  * Created by mperrier on 12/04/17.
  */
-public class GradiantSetter {
+public class GradiantSetter implements Runnable{
 
     private JSONObject packet;
     private Client cli;
