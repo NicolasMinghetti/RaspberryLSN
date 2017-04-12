@@ -1,8 +1,6 @@
 import org.json.JSONObject;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.Socket;
 
 /**
  * This class contains Utils functions to be used by client and server
@@ -12,9 +10,10 @@ public class Utils {
 
     /**
      * This function can be used to broadcast a message on the network
-     * @param networkObject JSONObject the packet to be sent over the netork
+     * @param networkObject JSONObject the packet to be sent over the network
+     * @param socket DatagramSocket socket on which the message is sent
      */
-    public static void broadcast (JSONObject networkObject) {
+    public static void broadcast (JSONObject networkObject, DatagramSocket socket) {
 
         System.out.println("Sending message: " + networkObject.toString());
 
@@ -25,7 +24,6 @@ public class Utils {
 
         try {
             DatagramPacket packet = new DatagramPacket(buf, buf.length, Constants.getNetAddr(), Constants.portNumber);
-            DatagramSocket socket = new DatagramSocket(Constants.portNumber);
             socket.send(packet);
         } catch (Exception E) {
             System.out.println("Error on IO exception: " + E);
