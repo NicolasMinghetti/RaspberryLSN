@@ -16,7 +16,7 @@ public class Client {
 
     Client(InetAddress addr, int port){
         try {
-            socket = new DatagramSocket(port, addr);
+            socket = new DatagramSocket(port);
             socket.setBroadcast(true);
         }catch(Exception E){
             System.out.println("Socket creation error: " + E);

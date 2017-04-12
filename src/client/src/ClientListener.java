@@ -21,12 +21,13 @@ public class ClientListener implements Runnable{
         try {
 
             while (true) {
-                System.out.println("gradiant client: " + cli.getGradient() );
+
                 JSONObject packet = Utils.receive(cli.getSocket());
+                System.out.println("message receive: " + packet);
                 if(packet.getBoolean("gradientInitialize")){
                     GradiantSetter graSet = new GradiantSetter(packet, cli);
                     graSet.run();
-                    
+
                 }
 
             }

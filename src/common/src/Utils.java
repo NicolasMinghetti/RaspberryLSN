@@ -57,7 +57,6 @@ public class Utils {
         socket.receive(packet);
         String received = new String(packet.getData());
         JSONObject obj = new JSONObject(received);
-        System.out.println("Package received: " + obj);
         return obj;
     }
 }
