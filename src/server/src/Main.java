@@ -11,6 +11,8 @@ public class Main {
 
     private static int deviceId;
 
+    private static int gradient = 0;    // the server is always the sink in the network
+
     public static void main(String[] args) {
         System.out.println("Hello server");
         deviceId = Integer.parseInt(args[0]);
@@ -22,6 +24,6 @@ public class Main {
      */
     private static void initialization() {
         Random rand = new Random();
-        Utils.broadcast(Utils.createNetworkPacket(true, deviceId, Instant.now().toString(), rand.nextInt(1000000000)));
+        Utils.broadcast(Utils.createNetworkPacket(true, gradient, deviceId, Instant.now().toString(), rand.nextInt(1000000000)));
     }
 }

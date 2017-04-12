@@ -36,15 +36,16 @@ public class Utils {
      * This function returns a network packet with the given parameters
      * @param buildingGradient boolean, set to true if initializing gradient
      * @param senderId the id of the sender (the device that created the message)
+     * @param gradient the gradient of this sender
      * @param sentTime the time when the message is sent for the first time
      * @param messageUid the uniqueId of the message
      * @return obj the JSON network packet
      */
-    public static JSONObject createNetworkPacket(boolean buildingGradient, int senderId, String sentTime, int messageUid) {
+    public static JSONObject createNetworkPacket(boolean buildingGradient, int gradient, int senderId, String sentTime, int messageUid) {
 
         JSONObject obj = new JSONObject();
         obj.put("gradientInitialize", buildingGradient);
-        obj.put("gradient", 0);
+        obj.put("gradient", gradient);
         obj.put("senderId", senderId);
         obj.put("sentTime", sentTime);
         obj.put("messageUid", messageUid);
