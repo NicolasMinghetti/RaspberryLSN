@@ -12,7 +12,6 @@ public class Client {
     private AtomicInteger gradient = new AtomicInteger(-1);
     private DatagramSocket socket;
     private int id;
-    private int messageId;
 
 
     Client(InetAddress addr, int port, int id){

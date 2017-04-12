@@ -19,7 +19,7 @@ public class GradiantSetter {
         if(packet.getInt("gradient")<cli.getGradient() || cli.getGradient() == -1){
             cli.setGradient(packet.getInt("gradient")+1);
             JSONObject packetInit = Utils.createNetworkPacket(true,
-                    cli.getGradient(), cli.getId(), cli.getId(), Instant.now().toString(), String.valueOf(cli.messageId));
+                    cli.getGradient(), cli.getId(), cli.getId(), Instant.now().toString(), String.valueOf(cli.getUniqueId()));
             Utils.broadcast(packetInit, cli.getSocket());
         }
     }
