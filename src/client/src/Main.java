@@ -6,7 +6,7 @@ public class Main {
         // write your code here
 
         System.out.println("Hello Client");
-        Client cli = new Client(Constants.getNetAddr(), Constants.portNumber);
+        Client cli = new Client(Constants.getNetAddr(), Constants.portNumber, Integer.valueOf(args[0]));
         ClientListener listener = new ClientListener(cli);
         listener.run();
 
