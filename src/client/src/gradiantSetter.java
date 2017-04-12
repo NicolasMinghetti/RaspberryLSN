@@ -1,3 +1,5 @@
+import org.json.JSONObject;
+
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -29,7 +31,9 @@ public class gradiantSetter implements Runnable{
                     socket.receive(packet);
 
                     String received = new String(packet.getData());
-                    System.out.println("Package received: " + received);
+                    JSONObject obj = new JSONObject(received);
+                    System.out.println("Package received: " + obj);
+
                 }
 
         } catch (Exception e) {
