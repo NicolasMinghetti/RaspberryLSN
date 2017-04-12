@@ -26,7 +26,8 @@ public class Main {
             DatagramSocket socket = new DatagramSocket(Constants.portNumber);
             Utils.broadcast(
                     Utils.createNetworkPacket(
-                            true, gradient, deviceId, Instant.now().toString(), UUID.randomUUID().toString()),
+                            true, gradient, deviceId, deviceId, Instant.now().toString(),
+                            UUID.randomUUID().toString()),
                     socket);
         } catch(Exception E) {
             System.out.println("Socket exception error: " + E);
