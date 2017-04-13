@@ -12,7 +12,8 @@ import java.util.UUID;
  */
 public class Utils {
 
-    public static final Logger logger = LogManager.getLogger();
+    public static final Logger trafficLog = LogManager.getLogger("trafficLog");
+    public static final Logger debugLog = LogManager.getLogger("debugLog");
 
     /**
      * This function can be used to broadcast a message on the network
@@ -21,7 +22,7 @@ public class Utils {
      */
     public static void broadcast (Packet networkObject, DatagramSocket socket) {
 
-        logger.info("Sending," + networkObject.logMessage());
+        trafficLog.info("Sending," + networkObject.logMessage());
 
         byte[] buf = networkObject.toString().getBytes();
         if (networkObject.toString().getBytes().length > Constants.messageLength) {
@@ -33,7 +34,7 @@ public class Utils {
             DatagramPacket packet = new DatagramPacket(buf, Constants.messageLength, Constants.getNetAddr(), Constants.portNumber);
             socket.send(packet);
         } catch (Exception E) {
-            logger.error("Error on IO exception: " + E);
+            debugLog.error("Error on IO exception: " + E);
         }
     }
 

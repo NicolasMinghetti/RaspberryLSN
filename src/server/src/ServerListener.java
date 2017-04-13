@@ -17,11 +17,11 @@ public class ServerListener implements Runnable {
             while (true) {
                 Packet packet = Utils.receive(cli.getSocket());
                 if(packet.getInt("senderId") != cli.getId()) {
-                    Utils.logger.info("receive," + packet.logMessage());
+                    Utils.trafficLog.info("receive," + packet.logMessage());
                 }
             }
         } catch (Exception e) {
-            Utils.logger.error("Error: " + e);
+            Utils.debugLog.error("Error: " + e);
         }
     }
 }

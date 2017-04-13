@@ -1,7 +1,3 @@
-import org.json.JSONObject;
-import java.time.Instant;
-import java.util.concurrent.TimeUnit;
-
 /**
  * This class broadcasts periodically packets on the network
  * Created by nicolas on 12/04/17.

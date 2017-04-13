@@ -1,17 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="INFO">
+<Configuration status="WARN">
+    <Properties>
+        <Property name="log-path">../logs</Property>
+    </Properties>
     <Appenders>
-        <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+
+        <!-- console appender -->
+        <Console name="console-log" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%-5level] %d{HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
         </Console>
-        <File name="MyFile" fileName="../raspberryLSN.log" immediateFlush="false" append="true">
-            <PatternLayout pattern="%d{yyy-MM-dd};%d{HH:mm:ss.SSS};[%t];%-5level;%logger{36};%msg%n"/>
-        </File>
+
+        <!-- file appender -->
+        <RollingFile name="traffic-log" fileName="${log-path}/traffic.log"
+                     filePattern="${log-path}/traffic-%d{yyyy-MM-dd}.log">
+            <!-- log pattern -->
+            <PatternLayout>
+                <pattern>[%-5level],%d{HH:mm:ss.SSS},%c{1},%msg%n</pattern>
+            </PatternLayout>
+
+            <!-- set file size policy -->
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="15 MB" />
+            </Policies>
+        </RollingFile>
+        <RollingFile name="debug-log" fileName="${log-path}/debug.log"
+                     filePattern="${log-path}/debug-%d{yyyy-MM-dd}.log">
+            <PatternLayout>
+                <pattern>[%-5level],%d{HH:mm:ss.SSS},%c{1},%msg%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="15 MB" />
+            </Policies>
+        </RollingFile>
     </Appenders>
     <Loggers>
-        <Root level="debug">
-            <AppenderRef ref="Console" />
-            <AppenderRef ref="MyFile"/>
+        <Logger name="trafficLog" level="debug" additivity="false">
+            <appender-ref ref="traffic-log" level="debug"/>
+            <appender-ref ref="console-log" level="debug"/>
+        </Logger>
+        <Logger name="debugLog" level="debug" additivity="false">
+            <appender-ref ref="console-log" level="debug"/>
+            <appender-ref ref="debug-log" level="debug"/>
+        </Logger>
+        <Root level="info" additivity="false">
+            <AppenderRef ref="console-log"/>
         </Root>
     </Loggers>
 </Configuration>

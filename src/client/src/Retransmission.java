@@ -1,5 +1,3 @@
-import org.json.JSONObject;
-
 /**
  * Created by mperrier on 12/04/17.
  */

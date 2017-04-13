@@ -1,3 +1,5 @@
+import org.apache.logging.log4j.Level;
+
 import java.net.DatagramSocket;
 import java.time.Instant;
 
@@ -12,7 +14,7 @@ public class Main {
     private static Device server;
 
     public static void main(String[] args) {
-        Utils.logger.info("Hello server");
+        Utils.debugLog.debug("Hello server");
         server = new Device(Constants.portNumber, Integer.valueOf(args[0]));
         server.setGradient(gradient);
 
@@ -32,7 +34,7 @@ public class Main {
                             Utils.getMessageUid(server.getId())),
                     socket);
         } catch(Exception E) {
-            Utils.logger.error("Socket exception error: " + E);
+            Utils.debugLog.error("Socket exception error: " + E);
         }
     }
 }

@@ -1,7 +1,3 @@
-import org.json.JSONObject;
-import java.util.Arrays;
-
-
 /**
  * Created by mperrier on 12/04/17.
  */
@@ -18,7 +14,7 @@ public class ClientListener implements Runnable{
             while (true) {
                 Packet packet = Utils.receive(cli.getSocket());
                 if(packet.getInt("senderId") != cli.getId()) {
-                    Utils.logger.info("Message receive: " + packet);
+                    Utils.trafficLog.info("receive," + packet.logMessage());
 
                     if (packet.getBoolean("gradientInitialize")) {
                         GradiantSetter graSet = new GradiantSetter(packet, cli);
@@ -31,7 +27,7 @@ public class ClientListener implements Runnable{
                 }
             }
         } catch (Exception e) {
-            Utils.logger.error("Error: " + e);
+            Utils.debugLog.error("Error: " + e);
         }
     }
 }

@@ -16,7 +16,7 @@ public class Device {
             socket = new DatagramSocket(port);
             socket.setBroadcast(true);
         }catch(Exception E){
-            Utils.logger.error("Socket creation error: " + E);
+            Utils.debugLog.error("Socket creation error: " + E);
         }
     }
 

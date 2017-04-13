@@ -1,4 +1,3 @@
-import org.json.JSONObject;
 import java.time.Instant;
 import java.util.concurrent.TimeUnit;
 
@@ -30,7 +29,7 @@ public class trafficGenerator {
                 }
 
         }catch (Exception e) {
-            Utils.logger.error("Error: " + e + e.getStackTrace());
+            Utils.debugLog.error("Error: " + e + e.getStackTrace());
         }
     }
 

@@ -1,8 +1,5 @@
 import org.json.JSONObject;
-
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.file.Files;
@@ -29,7 +26,7 @@ public class Constants {
             byte[] bytes = Files.readAllBytes(f.toPath());
             return new JSONObject(new String(bytes,"UTF-8"));
         } catch (Exception e) {
-            Utils.logger.error("Error reading constants.json: " + e);
+            Utils.debugLog.error("Error reading constants.json: " + e);
         }
         return new JSONObject();
     }
@@ -39,7 +36,7 @@ public class Constants {
         try {
             addr = InetAddress.getByName(networkAddress);
         } catch (UnknownHostException e) {
-            Utils.logger.error("Host unknown " + e);
+            Utils.debugLog.error("Host unknown " + e);
         }
         return addr;
     }
