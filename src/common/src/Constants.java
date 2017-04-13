@@ -11,7 +11,7 @@ public class Constants {
 
     static String networkAddress = "192.168.1.255"; // broadcast address for local network
 
-    static int maxMessageLength = 1000; // max length for transmitted messages
+    static int messageLength = 1000; // max length for transmitted messages
 
     public static InetAddress getNetAddr(){
         InetAddress addr = null;

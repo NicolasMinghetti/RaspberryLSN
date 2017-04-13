@@ -1,6 +1,7 @@
 import org.json.JSONObject;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.util.Arrays;
 import java.util.UUID;
 
 /**
@@ -19,12 +20,13 @@ public class Utils {
         System.out.println("Sending message: " + networkObject.toString());
 
         byte[] buf = networkObject.toString().getBytes();
-        if (networkObject.toString().getBytes().length > Constants.maxMessageLength) {
-            throw new java.lang.Error("Error: Message length exceeds maxMessageLength");
+        if (networkObject.toString().getBytes().length > Constants.messageLength) {
+            throw new java.lang.Error("Error: Message length exceeds messageLength");
         }
+        buf= Arrays.copyOf(buf, Constants.messageLength);
 
         try {
-            DatagramPacket packet = new DatagramPacket(buf, buf.length, Constants.getNetAddr(), Constants.portNumber);
+            DatagramPacket packet = new DatagramPacket(buf, Constants.messageLength, Constants.getNetAddr(), Constants.portNumber);
             socket.send(packet);
         } catch (Exception E) {
             System.out.println("Error on IO exception: " + E);
@@ -55,7 +57,7 @@ public class Utils {
 
     public static JSONObject receive(DatagramSocket socket) throws Exception{
 
-        byte[] buf = new byte[Constants.maxMessageLength];
+        byte[] buf = new byte[Constants.messageLength];
         DatagramPacket packet = new DatagramPacket(buf, buf.length);
         socket.receive(packet);
         String received = new String(packet.getData());
