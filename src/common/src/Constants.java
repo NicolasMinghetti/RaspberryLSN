@@ -1,5 +1,11 @@
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.file.Files;
 
 /**
  * This file contains constants values
@@ -7,11 +13,27 @@ import java.net.UnknownHostException;
  */
 public class Constants {
 
-    static int portNumber = 4444;   // port number for sent messages
 
-    static String networkAddress = "192.168.1.255"; // broadcast address for local network
+    private static JSONObject initializeJsonObject() {
+        File f = new File("constants.json");
+        try {
+            byte[] bytes = Files.readAllBytes(f.toPath());
+            return new JSONObject(new String(bytes,"UTF-8"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new JSONObject();
+    }
 
-    static int messageLength = 1000; // max length for transmitted messages
+    static JSONObject json = initializeJsonObject();
+
+    static int portNumber = json.getInt("portNumber");  // port number for sent messages
+
+    static String networkAddress = json.getString("ipAdress"); // broadcast address for local network
+
+    static int messageLength = json.getInt("messageLength"); // max length for transmitted messages
 
     public static InetAddress getNetAddr(){
         InetAddress addr = null;
