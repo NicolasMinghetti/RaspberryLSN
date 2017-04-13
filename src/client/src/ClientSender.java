@@ -18,17 +18,6 @@ public class ClientSender implements Runnable{
      * This function broadcasts periodically messages on the network when its gradient is set
      */
     public void run() {
-        try {
-            while (true) {
-                if(cli.getGradient() != -1) {
-                    TimeUnit.SECONDS.sleep(3);
-                    JSONObject networkPacket = Utils.createNetworkPacket(false,
-                            cli.getGradient(), cli.getId(), cli.getId(), Instant.now().toString(), String.valueOf(cli.getUniqueId()));
-                    Utils.broadcast(networkPacket, cli.getSocket());
-                }
-            }
-        } catch (Exception e) {
-            Utils.logger.error("Error: " + e);
-        }
+        (new trafficGenerator(0,0,cli)).CBR(5,1000);
     }
 }
