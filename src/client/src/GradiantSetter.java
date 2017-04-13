@@ -7,10 +7,10 @@ import java.time.Instant;
  */
 public class GradiantSetter implements Runnable{
 
-    private JSONObject packet;
+    private Packet packet;
     private Device cli;
 
-    GradiantSetter(JSONObject packet, Device cli){
+    GradiantSetter(Packet packet, Device cli){
         this.packet = packet;
         this.cli = cli;
     }
@@ -18,7 +18,7 @@ public class GradiantSetter implements Runnable{
 
         if(packet.getInt("gradient")<cli.getGradient() || cli.getGradient() == -1){
             cli.setGradient(packet.getInt("gradient")+1);
-            JSONObject packetInit = Utils.createNetworkPacket(true,
+            Packet packetInit = new Packet(true,
                     cli.getGradient(), cli.getId(), cli.getId(), Instant.now().toString(), String.valueOf(cli.getUniqueId()));
             Utils.broadcast(packetInit, cli.getSocket());
         }

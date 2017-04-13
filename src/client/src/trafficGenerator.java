@@ -23,7 +23,7 @@ public class trafficGenerator {
         try {
             TimeUnit.MILLISECONDS.sleep(startWait);
             for(int i=0; i<numberOfPacket; i++) {
-                JSONObject networkPacket = Utils.createNetworkPacket(false,
+                Packet networkPacket = new Packet(false,
                         cli.getGradient(), cli.getId(), cli.getId(), Instant.now().toString(), String.valueOf(cli.getUniqueId()));
                 Utils.broadcast(networkPacket, cli.getSocket());
                 TimeUnit.MILLISECONDS.sleep(waitBetweenPacket);

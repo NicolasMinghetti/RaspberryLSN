@@ -27,7 +27,7 @@ public class Main {
         try {
             DatagramSocket socket = server.getSocket();
             Utils.broadcast(
-                    Utils.createNetworkPacket(
+                    new Packet(
                             true, server.getGradient(), server.getId(), server.getId(), Instant.now().toString(),
                             Utils.getMessageUid(server.getId())),
                     socket);
