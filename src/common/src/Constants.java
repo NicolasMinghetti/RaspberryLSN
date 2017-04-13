@@ -19,15 +19,13 @@ public class Constants {
         try {
             byte[] bytes = Files.readAllBytes(f.toPath());
             return new JSONObject(new String(bytes,"UTF-8"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Utils.logger.error("Erreur lecture Constants.json: " + e);
         }
         return new JSONObject();
     }
 
-    static JSONObject json = initializeJsonObject();
+    private static JSONObject json = initializeJsonObject();
 
     static int portNumber = json.getInt("portNumber");  // port number for sent messages
 
@@ -35,6 +33,9 @@ public class Constants {
 
     static int messageLength = json.getInt("messageLength"); // max length for transmitted messages
 
+    static int startWait = json.getInt("startWait");
+    static int numberOfPacket = json.getInt("numberOfPacket");
+    static int waitBetweenPacket= json.getInt("waitBetweenPacket");
 
     public static InetAddress getNetAddr(){
         InetAddress addr = null;
