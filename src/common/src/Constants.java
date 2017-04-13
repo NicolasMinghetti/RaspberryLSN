@@ -28,14 +28,11 @@ public class Constants {
     private static JSONObject json = initializeJsonObject();
 
     static int portNumber = json.getInt("portNumber");  // port number for sent messages
-
-    static String networkAddress = json.getString("ipAdress"); // broadcast address for local network
-
+    static String networkAddress = json.getString("ipAddress"); // broadcast address for local network
     static int messageLength = json.getInt("messageLength"); // max length for transmitted messages
-
-    static int startWait = json.getInt("startWait");
-    static int numberOfPacket = json.getInt("numberOfPacket");
-    static int waitBetweenPacket= json.getInt("waitBetweenPacket");
+    static int startWait = json.getInt("startWait");// Waiting time after getting a gradient
+    static int numberOfPacket = json.getInt("numberOfPacket"); // Number of packet Send
+    static int waitBetweenPacket= json.getInt("waitBetweenPacket"); // Waiting time between two packets
 
     public static InetAddress getNetAddr(){
         InetAddress addr = null;
