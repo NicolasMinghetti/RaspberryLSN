@@ -18,6 +18,6 @@ public class ClientSender implements Runnable{
      * This function broadcasts periodically messages on the network when its gradient is set
      */
     public void run() {
-        (new trafficGenerator(0,0,cli)).CBR(5,1000);
+        (new trafficGenerator(Constants.startWait, cli)).CBR(Constants.numberOfPacket,Constants.waitBetweenPacket);
     }
 }
