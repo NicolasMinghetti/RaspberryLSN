@@ -28,7 +28,7 @@ public class ClientSender implements Runnable{
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error: " + e + e.getStackTrace());
+            Utils.logger.error("Error: " + e);
         }
     }
 }

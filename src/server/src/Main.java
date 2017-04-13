@@ -1,6 +1,5 @@
 import java.net.DatagramSocket;
 import java.time.Instant;
-import java.util.UUID;
 
 /**
  * This is the main class of the server. It represents the sink in the ad-hoc gradient routing network.
@@ -13,7 +12,7 @@ public class Main {
     private static int gradient = 0;    // the server is always the sink in the network
 
     public static void main(String[] args) {
-        System.out.println("Hello server");
+        Utils.logger.info("Hello server");
         deviceId = Integer.parseInt(args[0]);
         initialization();
     }
@@ -22,6 +21,8 @@ public class Main {
      * This function initializes the gradient network
      */
     private static void initialization() {
+
+
         try {
             DatagramSocket socket = new DatagramSocket(Constants.portNumber);
             Utils.broadcast(
@@ -30,7 +31,7 @@ public class Main {
                             Utils.getMessageUid(deviceId)),
                     socket);
         } catch(Exception E) {
-            System.out.println("Socket exception error: " + E);
+            Utils.logger.error("Socket exception error: " + E);
         }
     }
 }

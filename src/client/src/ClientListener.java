@@ -1,8 +1,5 @@
 import org.json.JSONObject;
-
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
+import java.util.Arrays;
 
 
 /**
@@ -21,7 +18,7 @@ public class ClientListener implements Runnable{
             while (true) {
                 JSONObject packet = Utils.receive(cli.getSocket());
                 if(packet.getInt("senderId") != cli.getId()) {
-                    System.out.println("message receive: " + packet);
+                    Utils.logger.info("message receive: " + packet);
 
                     if (packet.getBoolean("gradientInitialize")) {
                         GradiantSetter graSet = new GradiantSetter(packet, cli);
@@ -34,7 +31,7 @@ public class ClientListener implements Runnable{
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error: " + e + e.getStackTrace());
+            Utils.logger.error("Error: " + e);
         }
     }
 }
