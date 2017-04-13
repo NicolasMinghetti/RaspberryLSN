@@ -1,7 +1,6 @@
 import org.apache.logging.log4j.Level;
 
 import java.net.DatagramSocket;
-import java.time.Instant;
 
 /**
  * This is the main class of the server. It represents the sink in the ad-hoc gradient routing network.
@@ -30,7 +29,7 @@ public class Main {
             DatagramSocket socket = server.getSocket();
             Utils.broadcast(
                     new Packet(
-                            true, server.getGradient(), server.getId(), server.getId(), Instant.now().toString(),
+                            true, server.getGradient(), server.getId(), server.getId(),  Utils.getTime(),
                             Utils.getMessageUid(server.getId())),
                     socket);
         } catch(Exception E) {

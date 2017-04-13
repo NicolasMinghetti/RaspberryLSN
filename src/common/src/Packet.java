@@ -21,6 +21,7 @@ public class Packet extends JSONObject {
         this.put("senderId", senderId);
         this.put("creatorId", creatorId);
         this.put("sentTime", sentTime);
+        this.put("receptionTime", -1);
         this.put("messageUid", messageUid);
     }
 
@@ -29,6 +30,6 @@ public class Packet extends JSONObject {
     }
 
     public String logMessage() {
-        return this.get("messageUid") + "," + this.get("senderId") + "," + this.get("gradient") + "," + this.get("creatorId") + "," + this.get("sentTime") + "," + this.get("gradientInitialize");
+        return this.get("messageUid") + "," + this.get("senderId") + "," + this.get("gradient") + "," + this.get("creatorId") + "," + this.get("sentTime") + "," + this.get("receptionTime")+","+ this.get("gradientInitialize");
     }
 }
