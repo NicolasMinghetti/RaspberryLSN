@@ -8,9 +8,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class ClientSender implements Runnable{
 
-    private Client cli;
+    private Device cli;
 
-    ClientSender(Client cli){
+    ClientSender(Device cli){
         this.cli = cli;
     }
 

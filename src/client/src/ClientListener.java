@@ -7,9 +7,9 @@ import java.util.Arrays;
  */
 public class ClientListener implements Runnable{
 
-    private Client cli;
+    private Device cli;
 
-    ClientListener(Client cli){
+    ClientListener(Device cli){
         this.cli = cli;
     }
 
@@ -18,7 +18,7 @@ public class ClientListener implements Runnable{
             while (true) {
                 JSONObject packet = Utils.receive(cli.getSocket());
                 if(packet.getInt("senderId") != cli.getId()) {
-                    Utils.logger.info("message receive: " + packet);
+                    Utils.logger.info("Message receive: " + packet);
 
                     if (packet.getBoolean("gradientInitialize")) {
                         GradiantSetter graSet = new GradiantSetter(packet, cli);

@@ -5,10 +5,10 @@ import org.json.JSONObject;
  */
 public class Retransmission implements Runnable{
 
-    private Client cli;
+    private Device cli;
     private JSONObject packet;
 
-    Retransmission(JSONObject packet, Client cli){
+    Retransmission(JSONObject packet, Device cli){
         this.cli = cli;
         this.packet = packet;
     }

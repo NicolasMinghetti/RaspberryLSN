@@ -8,9 +8,9 @@ import java.util.concurrent.TimeUnit;
 public class trafficGenerator {
 
     private int startWait;
-    private Client cli;
+    private Device cli;
 
-    trafficGenerator(int startWait, Client cli){
+    trafficGenerator(int startWait, Device cli){
         this.startWait=startWait;
         this.cli=cli;
     }

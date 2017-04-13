@@ -7,28 +7,29 @@ import java.time.Instant;
  */
 public class Main {
 
-    private static int deviceId;
-
     private static int gradient = 0;    // the server is always the sink in the network
+
+    private static Device server;
 
     public static void main(String[] args) {
         Utils.logger.info("Hello server");
-        deviceId = Integer.parseInt(args[0]);
+        server = new Device(Constants.getNetAddr(), Constants.portNumber, Integer.valueOf(args[0]));
+        server.setGradient(gradient);
+
         initialization();
+        (new Thread(new ServerListener(server))).start();
     }
 
     /**
      * This function initializes the gradient network
      */
     private static void initialization() {
-
-
         try {
-            DatagramSocket socket = new DatagramSocket(Constants.portNumber);
+            DatagramSocket socket = server.getSocket();
             Utils.broadcast(
                     Utils.createNetworkPacket(
-                            true, gradient, deviceId, deviceId, Instant.now().toString(),
-                            Utils.getMessageUid(deviceId)),
+                            true, server.getGradient(), server.getId(), server.getId(), Instant.now().toString(),
+                            Utils.getMessageUid(server.getId())),
                     socket);
         } catch(Exception E) {
             Utils.logger.error("Socket exception error: " + E);

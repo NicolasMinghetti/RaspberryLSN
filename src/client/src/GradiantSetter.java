@@ -8,9 +8,9 @@ import java.time.Instant;
 public class GradiantSetter implements Runnable{
 
     private JSONObject packet;
-    private Client cli;
+    private Device cli;
 
-    GradiantSetter(JSONObject packet, Client cli){
+    GradiantSetter(JSONObject packet, Device cli){
         this.packet = packet;
         this.cli = cli;
     }
