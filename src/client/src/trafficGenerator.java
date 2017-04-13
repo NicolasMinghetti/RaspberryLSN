@@ -11,9 +11,9 @@ public class trafficGenerator {
 
     private int startWait;
     private int packetSize;
-    private Client cli;
+    private Device cli;
 
-    trafficGenerator(int startWait, int packetSize, Client cli){
+    trafficGenerator(int startWait, int packetSize, Device cli){
         this.startWait=startWait;
         this.packetSize=packetSize;
         this.cli=cli;

@@ -5,13 +5,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Created by mperrier on 12/04/17.
  */
-public class Client {
+public class Device {
 
     private AtomicInteger gradient = new AtomicInteger(-1);
     private DatagramSocket socket;
     private int id;
 
-    Client(InetAddress addr, int port, int id){
+    Device(InetAddress addr, int port, int id){
         this.id = id;
         try {
             socket = new DatagramSocket(port);
