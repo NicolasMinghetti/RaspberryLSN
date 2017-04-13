@@ -18,7 +18,7 @@ public class trafficGenerator {
     public void CBR(int numberOfPacket, int waitBetweenPacket){
         try {
             for(int i=0; i<=numberOfPacket; i++) {
-                JSONObject networkPacket = Utils.createNetworkPacket(false,
+                Packet networkPacket = new Packet(false,
                         cli.getGradient(), cli.getId(), cli.getId(), Instant.now().toString(), String.valueOf(cli.getUniqueId()));
                 if(cli.getGradient() == -1){
                     if(i > 0) i--;

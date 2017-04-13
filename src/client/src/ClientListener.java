@@ -16,7 +16,7 @@ public class ClientListener implements Runnable{
     public void run() {
         try {
             while (true) {
-                JSONObject packet = Utils.receive(cli.getSocket());
+                Packet packet = Utils.receive(cli.getSocket());
                 if(packet.getInt("senderId") != cli.getId()) {
                     Utils.logger.info("Message receive: " + packet);
 

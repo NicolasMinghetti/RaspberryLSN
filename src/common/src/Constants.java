@@ -14,17 +14,6 @@ import java.nio.file.Files;
 public class Constants {
 
 
-    private static JSONObject initializeJsonObject() {
-        File f = new File("constants.json");
-        try {
-            byte[] bytes = Files.readAllBytes(f.toPath());
-            return new JSONObject(new String(bytes,"UTF-8"));
-        } catch (Exception e) {
-            Utils.logger.error("Erreur lecture Constants.json: " + e);
-        }
-        return new JSONObject();
-    }
-
     private static JSONObject json = initializeJsonObject();
 
     static int portNumber = json.getInt("portNumber");  // port number for sent messages
@@ -33,6 +22,17 @@ public class Constants {
     static int startWait = json.getInt("startWait");// Waiting time after getting a gradient
     static int numberOfPacket = json.getInt("numberOfPacket"); // Number of packet Send
     static int waitBetweenPacket= json.getInt("waitBetweenPacket"); // Waiting time between two packets
+
+    private static JSONObject initializeJsonObject() {
+        File f = new File("constants.json");
+        try {
+            byte[] bytes = Files.readAllBytes(f.toPath());
+            return new JSONObject(new String(bytes,"UTF-8"));
+        } catch (Exception e) {
+            Utils.logger.error("Error reading constants.json: " + e);
+        }
+        return new JSONObject();
+    }
 
     public static InetAddress getNetAddr(){
         InetAddress addr = null;
