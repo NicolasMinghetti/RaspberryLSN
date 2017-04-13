@@ -45,10 +45,8 @@ public class Utils {
         byte[] buf = new byte[Constants.messageLength];
         DatagramPacket packet = new DatagramPacket(buf, buf.length);
         socket.receive(packet);
-        String receiveTime = getTime();
         String received = new String(packet.getData());
         Packet receivedPacket =  new Packet(received);
-        receivedPacket.put("receptionTime", receiveTime);
         if(receivedPacket.getInt("senderId") != Id) {
             Utils.trafficLog.info("receive," + receivedPacket.logMessage());
         }

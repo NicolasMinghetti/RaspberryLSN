@@ -17,7 +17,7 @@ public class GradiantSetter implements Runnable{
         if(packet.getInt("gradient")<cli.getGradient() || cli.getGradient() == -1){
             cli.setGradient(packet.getInt("gradient")+1);
             Packet packetInit = new Packet(true,
-                    cli.getGradient(), cli.getId(), cli.getId(), Instant.now().toString(), String.valueOf(cli.getUniqueId()));
+                    cli.getGradient(), cli.getId(), cli.getId(), Utils.getTime(), String.valueOf(cli.getUniqueId()));
             Utils.broadcast(packetInit, cli.getSocket());
         }
     }
