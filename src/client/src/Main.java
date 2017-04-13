@@ -4,9 +4,8 @@
 public class Main {
 
     public static void main(String[] args) {
-        // write your code here
         Utils.logger.info("Hello client");
-        Device cli = new Device(Constants.getNetAddr(), Constants.portNumber, Integer.valueOf(args[0]));
+        Device cli = new Device(Constants.portNumber, Integer.valueOf(args[0]));
         (new Thread(new ClientListener(cli))).start();
         (new Thread(new ClientSender(cli))).start();
     }

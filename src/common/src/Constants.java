@@ -14,28 +14,24 @@ import java.nio.file.Files;
 public class Constants {
 
 
+    private static JSONObject json = initializeJsonObject();
+    static int portNumber = json.getInt("portNumber");  // port number for sent messages
+    static String networkAddress = json.getString("ipAdress"); // broadcast address for local network
+    static int messageLength = json.getInt("messageLength"); // max length for transmitted messages
+    static int startWait = json.getInt("startWait");
+    static int numberOfPacket = json.getInt("numberOfPacket");
+    static int waitBetweenPacket= json.getInt("waitBetweenPacket");
+
     private static JSONObject initializeJsonObject() {
         File f = new File("constants.json");
         try {
             byte[] bytes = Files.readAllBytes(f.toPath());
             return new JSONObject(new String(bytes,"UTF-8"));
         } catch (Exception e) {
-            Utils.logger.error("Erreur lecture Constants.json: " + e);
+            Utils.logger.error("Error reading constants.json: " + e);
         }
         return new JSONObject();
     }
-
-    private static JSONObject json = initializeJsonObject();
-
-    static int portNumber = json.getInt("portNumber");  // port number for sent messages
-
-    static String networkAddress = json.getString("ipAdress"); // broadcast address for local network
-
-    static int messageLength = json.getInt("messageLength"); // max length for transmitted messages
-
-    static int startWait = json.getInt("startWait");
-    static int numberOfPacket = json.getInt("numberOfPacket");
-    static int waitBetweenPacket= json.getInt("waitBetweenPacket");
 
     public static InetAddress getNetAddr(){
         InetAddress addr = null;

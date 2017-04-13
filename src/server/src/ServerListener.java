@@ -15,9 +15,9 @@ public class ServerListener implements Runnable {
     public void run() {
         try {
             while (true) {
-                JSONObject packet = Utils.receive(cli.getSocket());
+                Packet packet = Utils.receive(cli.getSocket());
                 if(packet.getInt("senderId") != cli.getId()) {
-                    Utils.logger.info("message receive: " + packet);
+                    Utils.logger.info("receive," + packet.logMessage());
                 }
             }
         } catch (Exception e) {

@@ -1,5 +1,4 @@
 import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -11,7 +10,7 @@ public class Device {
     private DatagramSocket socket;
     private int id;
 
-    Device(InetAddress addr, int port, int id){
+    Device(int port, int id){
         this.id = id;
         try {
             socket = new DatagramSocket(port);

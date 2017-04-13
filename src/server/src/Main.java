@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         Utils.logger.info("Hello server");
-        server = new Device(Constants.getNetAddr(), Constants.portNumber, Integer.valueOf(args[0]));
+        server = new Device(Constants.portNumber, Integer.valueOf(args[0]));
         server.setGradient(gradient);
 
         initialization();
