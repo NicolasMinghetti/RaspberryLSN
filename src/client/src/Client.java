@@ -1,7 +1,5 @@
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.Socket;
-import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -13,14 +11,13 @@ public class Client {
     private DatagramSocket socket;
     private int id;
 
-
     Client(InetAddress addr, int port, int id){
         this.id = id;
         try {
             socket = new DatagramSocket(port);
             socket.setBroadcast(true);
         }catch(Exception E){
-            System.out.println("Socket creation error: " + E);
+            Utils.logger.error("Socket creation error: " + E);
         }
     }
 

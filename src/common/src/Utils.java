@@ -1,3 +1,5 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -10,6 +12,8 @@ import java.util.UUID;
  */
 public class Utils {
 
+    public static final Logger logger = LogManager.getLogger();
+
     /**
      * This function can be used to broadcast a message on the network
      * @param networkObject JSONObject the packet to be sent over the network
@@ -17,7 +21,7 @@ public class Utils {
      */
     public static void broadcast (JSONObject networkObject, DatagramSocket socket) {
 
-        System.out.println("Sending message: " + networkObject.toString());
+        logger.info("Sending message: " + networkObject.toString());
 
         byte[] buf = networkObject.toString().getBytes();
         if (networkObject.toString().getBytes().length > Constants.messageLength) {
@@ -29,7 +33,7 @@ public class Utils {
             DatagramPacket packet = new DatagramPacket(buf, Constants.messageLength, Constants.getNetAddr(), Constants.portNumber);
             socket.send(packet);
         } catch (Exception E) {
-            System.out.println("Error on IO exception: " + E);
+            logger.error("Error on IO exception: " + E);
         }
     }
 

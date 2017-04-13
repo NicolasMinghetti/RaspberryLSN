@@ -35,12 +35,13 @@ public class Constants {
 
     static int messageLength = json.getInt("messageLength"); // max length for transmitted messages
 
+
     public static InetAddress getNetAddr(){
         InetAddress addr = null;
         try {
             addr = InetAddress.getByName(networkAddress);
-        }catch (UnknownHostException e){
-            System.out.println("Host unknown " + e);
+        } catch (UnknownHostException e) {
+            Utils.logger.error("Host unknown " + e);
         }
         return addr;
     }
