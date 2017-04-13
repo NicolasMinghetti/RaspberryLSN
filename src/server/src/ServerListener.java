@@ -15,10 +15,7 @@ public class ServerListener implements Runnable {
     public void run() {
         try {
             while (true) {
-                Packet packet = Utils.receive(cli.getSocket());
-                if(packet.getInt("senderId") != cli.getId()) {
-                    Utils.logger.info("receive," + packet.logMessage());
-                }
+                Packet packet = Utils.receive(cli.getSocket(), cli.getId());
             }
         } catch (Exception e) {
             Utils.logger.error("Error: " + e);

@@ -1,5 +1,3 @@
-import org.json.JSONObject;
-import java.time.Instant;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -19,7 +17,7 @@ public class trafficGenerator {
         try {
             for(int i=0; i<=numberOfPacket; i++) {
                 Packet networkPacket = new Packet(false,
-                        cli.getGradient(), cli.getId(), cli.getId(), Instant.now().toString(), String.valueOf(cli.getUniqueId()));
+                        cli.getGradient(), cli.getId(), cli.getId(),Utils.getTime(), String.valueOf(cli.getUniqueId()));
                 if(cli.getGradient() == -1){
                     if(i > 0) i--;
                 }else{

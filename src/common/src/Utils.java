@@ -1,8 +1,11 @@
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONObject;
+
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -21,7 +24,6 @@ public class Utils {
      */
     public static void broadcast (Packet networkObject, DatagramSocket socket) {
 
-        logger.info("Sending," + networkObject.logMessage());
 
         byte[] buf = networkObject.toString().getBytes();
         if (networkObject.toString().getBytes().length > Constants.messageLength) {
@@ -31,18 +33,24 @@ public class Utils {
 
         try {
             DatagramPacket packet = new DatagramPacket(buf, Constants.messageLength, Constants.getNetAddr(), Constants.portNumber);
+            logger.info("Sending," + networkObject.logMessage());
             socket.send(packet);
         } catch (Exception E) {
             logger.error("Error on IO exception: " + E);
         }
     }
 
-    public static Packet receive(DatagramSocket socket) throws Exception{
+    public static Packet receive(DatagramSocket socket, int Id) throws Exception{
         byte[] buf = new byte[Constants.messageLength];
         DatagramPacket packet = new DatagramPacket(buf, buf.length);
         socket.receive(packet);
+        String receiveTime = getTime();
         String received = new String(packet.getData());
         Packet receivedPacket =  new Packet(received);
+        receivedPacket.put("receptionTime", receiveTime);
+        if(receivedPacket.getInt("senderId") != Id) {
+            Utils.logger.info("receive," + receivedPacket.logMessage());
+        }
         return receivedPacket;
     }
 
@@ -53,6 +61,10 @@ public class Utils {
      */
     public static String getMessageUid (int deviceId) {
         return UUID.randomUUID().toString() + "-" + String.valueOf(deviceId);
+    }
+
+    public  static String getTime(){
+        return DateTimeFormatter.ofPattern("HH:mm:ss.SSS").withZone(ZoneId.systemDefault()).format(Instant.now());
     }
 
 }
