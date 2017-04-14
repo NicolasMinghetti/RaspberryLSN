@@ -3,6 +3,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * This class represents a device object, it contains information on grandient, uniqueId...
  * Created by mperrier on 12/04/17.
  */
 public class Device {

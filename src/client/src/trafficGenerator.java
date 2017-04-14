@@ -1,6 +1,7 @@
 import java.util.concurrent.TimeUnit;
 
 /**
+ * This class is used to broadcast traffic over the network
  * Created by mperrier on 13/04/17.
  */
 public class trafficGenerator {
@@ -24,8 +25,8 @@ public class trafficGenerator {
                     TimeUnit.MILLISECONDS.sleep(waitBetweenPacket);
                 }
 
-            }catch (Exception e) {
-                Utils.debugLog.error("Error: " + e + e.getStackTrace());
+        }catch (Exception e) {
+            Utils.debugLog.error("Error: " + e);
         }
     }
 

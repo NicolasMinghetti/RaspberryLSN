@@ -1,4 +1,5 @@
 /**
+ * This is the Main class for clients. It launches two threads: ClientSender and ClientListener
  * Created by nicolas on 11/04/17.
  */
 public class Main {
