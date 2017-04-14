@@ -1,6 +1,3 @@
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
-
 /**
  * Created by mperrier on 12/04/17.
  */
@@ -14,6 +11,6 @@ public class GradiantSetter implements Runnable{
         this.cli = cli;
     }
     public void run(){
-        cli.setGradient(packet.getInt("gradient"));
+        cli.setGradientClient(packet.getInt("gradient"));
     }
 }

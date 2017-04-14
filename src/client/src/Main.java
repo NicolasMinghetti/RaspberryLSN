@@ -7,6 +7,5 @@ public class Main {
         Utils.debugLog.debug("Hello client");
         Device cli = new Device(Constants.portNumber, Integer.valueOf(args[0]));
         (new Thread(new ClientListener(cli))).start();
-        (new Thread(new ClientSender(cli))).start();
     }
 }

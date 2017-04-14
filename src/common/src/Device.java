@@ -25,21 +25,26 @@ public class Device {
         return this.gradient;
     }
 
-    public synchronized void setGradient(int gradient){
+    public synchronized void setGradientClient(int gradient){
         try {
-            Random rand = new Random();
-            TimeUnit.MILLISECONDS.sleep(rand.nextInt(Constants.postGradientSleepTime));
-
             if(gradient<this.gradient || this.gradient == -1){
+                int oldGradient = this.gradient;
                 this.gradient = gradient +1;
                 Packet packetInit = new Packet(true,
                         this.gradient, this.id, this.id, Utils.getTime(), String.valueOf(this.getUniqueId()));
+                Random rand = new Random();
+                TimeUnit.MILLISECONDS.sleep(rand.nextInt(Constants.postGradientSleepTime));
                 Utils.broadcast(packetInit, this.getSocket());
+                if(oldGradient== -1) (new Thread(new ClientSender(this))).start();
             }
 
         } catch (Exception E) {
             Utils.debugLog.error("Error random" + E);
         }
+    }
+
+    public void setGradientServer(int gradient){
+        this.gradient = gradient;
     }
 
     public int getId(){
