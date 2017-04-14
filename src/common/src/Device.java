@@ -1,12 +1,13 @@
 import java.net.DatagramSocket;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by mperrier on 12/04/17.
  */
 public class Device {
 
-    private AtomicInteger gradient = new AtomicInteger(-1);
+    private int gradient = -1;
     private DatagramSocket socket;
     private int id;
 
@@ -21,11 +22,24 @@ public class Device {
     }
 
     public int getGradient(){
-        return gradient.get();
+        return this.gradient;
     }
 
-    public void setGradient(int gradient){
-        this.gradient = new AtomicInteger(gradient);
+    public synchronized void setGradient(int gradient){
+        try {
+            Random rand = new Random();
+            TimeUnit.MILLISECONDS.sleep(rand.nextInt(Constants.postGradientSleepTime));
+
+            if(gradient<this.gradient || this.gradient == -1){
+                this.gradient = gradient +1;
+                Packet packetInit = new Packet(true,
+                        this.gradient, this.id, this.id, Utils.getTime(), String.valueOf(this.getUniqueId()));
+                Utils.broadcast(packetInit, this.getSocket());
+            }
+
+        } catch (Exception E) {
+            Utils.debugLog.error("Error random" + E);
+        }
     }
 
     public int getId(){

@@ -5,5 +5,6 @@
   "waitBetweenPacket": 1000,
   "startWait": 5000,
   "packetSize": 1000,
-  "numberOfPacket": 6
+  "numberOfPacket": 6,
+  "postGradientSleepTime": 1000
 }

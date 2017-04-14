@@ -16,17 +16,17 @@ public class trafficGenerator {
     public void CBR(int numberOfPacket, int waitBetweenPacket){
         try {
             for(int i=0; i<=numberOfPacket; i++) {
-                Packet networkPacket = new Packet(false,
-                        cli.getGradient(), cli.getId(), cli.getId(),Utils.getTime(), String.valueOf(cli.getUniqueId()));
                 if(cli.getGradient() == -1){
                     if(i > 0) i--;
                 }else{
                     if(i==1)TimeUnit.MILLISECONDS.sleep(startWait);
+                    Packet networkPacket = new Packet(false,
+                            cli.getGradient(), cli.getId(), cli.getId(),Utils.getTime(), String.valueOf(cli.getUniqueId()));
                     Utils.broadcast(networkPacket, cli.getSocket());
-                }
-                TimeUnit.MILLISECONDS.sleep(waitBetweenPacket);
+                    TimeUnit.MILLISECONDS.sleep(waitBetweenPacket);
                 }
 
+            }
         }catch (Exception e) {
             Utils.debugLog.error("Error: " + e + e.getStackTrace());
         }
