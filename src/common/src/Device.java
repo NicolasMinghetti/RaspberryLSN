@@ -2,6 +2,7 @@ import java.net.DatagramSocket;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * This class represents a device object, it contains information on grandient, uniqueId...
  * Created by mperrier on 12/04/17.
  */
 public class Device {

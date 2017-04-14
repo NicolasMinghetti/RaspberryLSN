@@ -1,4 +1,6 @@
 /**
+ * This class is used to retransmit a package over the network. Every clients use it to
+ * transmit network package to the sink
  * Created by mperrier on 12/04/17.
  */
 public class Retransmission implements Runnable{

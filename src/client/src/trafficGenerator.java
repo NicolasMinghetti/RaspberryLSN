@@ -1,9 +1,10 @@
 import java.util.concurrent.TimeUnit;
 
 /**
+ * This class is used to broadcast traffic over the network
  * Created by mperrier on 13/04/17.
  */
-public class trafficGenerator {
+class trafficGenerator {
 
     private int startWait;
     private Device cli;
@@ -28,7 +29,7 @@ public class trafficGenerator {
                 }
 
         }catch (Exception e) {
-            Utils.debugLog.error("Error: " + e + e.getStackTrace());
+            Utils.debugLog.error("Error: " + e);
         }
     }
 

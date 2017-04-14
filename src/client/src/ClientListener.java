@@ -1,4 +1,6 @@
 /**
+ * This class is used to listen packages on the network, depending on what's in the networkPackage, it will call
+ * GradiantSetter of Retransmission
  * Created by mperrier on 12/04/17.
  */
 public class ClientListener implements Runnable{

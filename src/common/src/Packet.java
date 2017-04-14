@@ -1,6 +1,7 @@
 import org.json.JSONObject;
 
 /**
+ * This class represents a network packet, it extends a JSONObject
  * Created by nicolas on 13/04/17.
  */
 public class Packet extends JSONObject {
@@ -13,7 +14,6 @@ public class Packet extends JSONObject {
      * @param gradient the gradient of this sender
      * @param sentTime the time when the message is sent for the first time
      * @param messageUid the uniqueId of the message
-     * @return Packet the network packet
      */
     public Packet (boolean buildingGradient, int gradient, int senderId, int creatorId, String sentTime, String messageUid) {
         this.put("gradientInitialize", buildingGradient);
