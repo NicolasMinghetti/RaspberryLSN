@@ -1,5 +1,3 @@
-import org.json.JSONObject;
-
 /**
  * This class listens and logs messages received by the server
  * Created by nicolas on 13/04/17.

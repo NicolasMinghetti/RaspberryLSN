@@ -1,5 +1,3 @@
-import org.apache.logging.log4j.Level;
-
 import java.net.DatagramSocket;
 
 /**

@@ -1,6 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 
 *.json
+MANIFEST.MF
 
 ### Java template
 # Compiled class file
