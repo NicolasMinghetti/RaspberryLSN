@@ -1,6 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 
-*.json
+constants.json
 MANIFEST.MF
 
 ### Java template

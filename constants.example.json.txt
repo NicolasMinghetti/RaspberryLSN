@@ -1,0 +1,11 @@
+// This file is an example of what constants.json should look like.
+{
+  "portNumber": 7210, // Port number of sent messages
+  "ipAddress": "192.168.1.255", // IP address of broadcast on the network
+  "messageLength": 1000, // Length of the message sent over the network
+  "waitBetweenPacket": 500, // Wait between each sent packet from the client
+  "startWait": 4000, // Client waits rand*startWait seconds after sending gradient message to broadcast traffic
+  "numberOfPacket": 10, // Number of traffic packets sent from the client
+  "postGradientSleepTime": 3000 // Client waits rand*postGradientSleepTime seconds after receiving a gradient
+                                // message to send its gradient message
+}
