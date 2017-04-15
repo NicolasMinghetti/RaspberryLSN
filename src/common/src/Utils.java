@@ -24,7 +24,6 @@ public class Utils {
      */
     public static void broadcast (Packet networkObject, DatagramSocket socket) {
 
-
         byte[] buf = networkObject.toString().getBytes();
         if (networkObject.toString().getBytes().length > Constants.messageLength) {
             throw new java.lang.Error("Error: Message length exceeds messageLength");
