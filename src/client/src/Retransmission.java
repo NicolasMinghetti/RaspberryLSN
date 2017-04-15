@@ -15,7 +15,7 @@ public class Retransmission implements Runnable{
 
     public void run(){
 
-        if(packet.getInt("gradient")>cli.getGradient()){
+        if(packet.getInt("gradient")>cli.getGradient() && cli.getGradient()!=-1){
             packet.put("gradient", cli.getGradient());
             packet.put("senderId", cli.getId());
             Utils.broadcast(packet, cli.getSocket());
