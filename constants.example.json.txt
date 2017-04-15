@@ -6,6 +6,7 @@
   "waitBetweenPacket": 500, // Wait between each sent packet from the client
   "startWait": 4000, // Client waits rand*startWait seconds after sending gradient message to broadcast traffic
   "numberOfPacket": 10, // Number of traffic packets sent from the client
-  "postGradientSleepTime": 3000 // Client waits rand*postGradientSleepTime seconds after receiving a gradient
+  "postGradientSleepTime": 3000, // Client waits rand*postGradientSleepTime seconds after receiving a gradient
                                 // message to send its gradient message
+  "gradientRefreshTime": 3000 // Waiting time between two broadcasts of the gradient
 }

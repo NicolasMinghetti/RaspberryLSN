@@ -15,23 +15,8 @@ public class Main {
         server = new Device(Constants.portNumber, Integer.valueOf(args[0]));
         server.setGradientServer(gradient);
 
-        initialization();
+        (new Thread(new ServerSender(server))).start();
         (new Thread(new ServerListener(server))).start();
     }
 
-    /**
-     * This function initializes the gradient network
-     */
-    private static void initialization() {
-        try {
-            DatagramSocket socket = server.getSocket();
-            Utils.broadcast(
-                    new Packet(
-                            true, server.getGradient(), server.getId(), server.getId(),  Utils.getTime(),
-                            Utils.getMessageUid(server.getId())),
-                    socket);
-        } catch(Exception E) {
-            Utils.debugLog.error("Socket exception error: " + E);
-        }
-    }
 }

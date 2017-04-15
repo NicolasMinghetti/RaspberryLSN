@@ -19,9 +19,8 @@ public class Constants {
     static int startWait = json.getInt("startWait");// Waiting time after getting a gradient
     static int numberOfPacket = json.getInt("numberOfPacket"); // Number of packet Send
     static int waitBetweenPacket= json.getInt("waitBetweenPacket"); // Waiting time between two packets
-    static int postGradientSleepTime= json.getInt("postGradientSleepTime"); // Waiting time before the first gradient
-                                                                                // packet to be send
-
+    static int postGradientSleepTime= json.getInt("postGradientSleepTime"); // Waiting time before the first gradient packet to be send
+    static int gradientRefreshTime= json.getInt("gradientRefreshTime");// Waiting time between two broadcast of gradient
     private static JSONObject initializeJsonObject() {
         File f = new File("constants.json");
         try {

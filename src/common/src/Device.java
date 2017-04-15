@@ -28,7 +28,7 @@ public class Device {
 
     public synchronized void setGradientClient(int gradient){
         try {
-            if(gradient<this.gradient-1 || this.gradient == -1){
+            if(gradient<this.gradient || this.gradient == -1){
                 int oldGradient = this.gradient;
                 this.gradient = gradient +1;
                 Packet packetInit = new Packet(true,
