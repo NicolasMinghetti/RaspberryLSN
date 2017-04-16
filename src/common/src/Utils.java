@@ -32,7 +32,7 @@ public class Utils {
 
         try {
             DatagramPacket packet = new DatagramPacket(buf, Constants.messageLength, Constants.getNetAddr(), Constants.portNumber);
-            trafficLog.info("Sending," + networkObject.logMessage());
+            trafficLog.info("sending," + networkObject.logMessage());
             socket.send(packet);
         } catch (Exception E) {
             debugLog.error("Error on IO exception: " + E);
